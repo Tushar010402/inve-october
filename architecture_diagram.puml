@@ -1,0 +1,57 @@
+@startuml
+package "Backend (FastAPI)" {
+  entity "Tenant Service" {
+    * Tenant registration
+    * Store creation
+    * Multi-tenant schemas
+    * Sharded database connections
+  }
+
+  entity "CCTV & YOLOv8 Service" {
+    * Camera integration
+    * Product counting
+    * Anomaly detection
+    * Pre-trained models
+    * Custom product training
+  }
+
+  entity "Licensing & Subscription Service" {
+    * License management
+    * Subscription billing
+    * Grace period handling
+  }
+
+  entity "Reporting & Dashboard Service" {
+    * Real-time reporting
+    * Anomaly alerts
+    * Sales and inventory summaries
+  }
+}
+
+package "Frontend (Next.js)" {
+  interface AdminDashboard {
+    * Store management
+    * Product selection
+    * Anomaly monitoring
+    * Reporting and alerts
+  }
+}
+
+package "Cloud Infrastructure" {
+  entity "AWS S3" {
+    * Video storage
+    * Automatic retention
+  }
+
+  entity "PostgreSQL Sharded" {
+    * Tenant schemas
+    * Inventory data
+    * Transactional records
+    * Sharded data storage
+  }
+}
+
+AdminDashboard -- "CCTV & YOLOv8 Service"
+"CCTV & YOLOv8 Service" -- "AWS S3" : Video Storage
+"Tenant Service" --> "PostgreSQL Sharded" : Schema creation and data storage
+@enduml
